@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  database:
+    image: bitnami/mongodb:4.1.10
+    restart: always
+    environment:
+      MONGODB_USERNAME: mmwuser
+      MONGODB_PASSWORD: cKtrEudKZn638a6Q
+      MONGODB_DATABASE: mmwdb
+    # Dont't forget to set up bind-mounted volume to persist data
+    # volumes:
+    #   - /path/to/mongodb-persistence:/bitnami
+
+
+  api:
+    image: nexus.innovation-factory.io/mmw-data/api:latest
+    ports:
+      - 3000:3000
+    environment:
+      DB_HOST: database
+      DB_USER: mmwuser
+      DB_PASSWORD: cKtrEudKZn638a6Q
+      DB_NAME: mmwdb
+    depends_on:
+      - database

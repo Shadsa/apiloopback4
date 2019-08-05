@@ -1,0 +1,10 @@
+# Logs
+build.log
+logs/
+
+# Reports
+target/
+
+# db
+db/
+.vscode
